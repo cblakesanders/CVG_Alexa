@@ -103,11 +103,11 @@ def get_facts_response():
     """
     session_attributes = {}
     card_title = "Facts"
-    facts = [line for line in open('team_facts.txt')]
+    facts = [line for line in open('cvgfacts.txt')]
     print(facts)
-    team_facts = facts[random.randint(0,len(facts)-1)]
-    speech_output = team_facts
-    reprompt_text = "I said," + team_facts
+    cvg_facts = facts[random.randint(0,len(facts)-1)]
+    speech_output = cvg_facts
+    reprompt_text = "I said," + cvg_facts
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -162,14 +162,16 @@ def on_intent(intent_request, session):
     intent_name = intent_request['intent']['name']
 
     # Dispatch to your skill's intent handlers
-    if intent_name == "compliment":
-        return get_compliment_response()
+ if intent_name == "Hungry":
+        return get_hungry_response()
+    elif intent_name == "Pizza":
+        return get_pizza_response()
+    elif intent_name == "coffee":
+        return coffee_response()
+    elif intent_name == "Hamburger":
+        return get_hamburger_response()
     elif intent_name == "facts":
         return get_facts_response()
-    elif intent_name == "insult":
-        return get_insult_response()
-    elif intent_name == "test":
-        return get_team_response()
     elif intent_name == "AMAZON.HelpIntent":
         return get_welcome_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
