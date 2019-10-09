@@ -38,31 +38,45 @@ def build_response(session_attributes, speechlet_response):
 
 
 # --------------- Functions that control the skill's behavior ------------------
-def get_compliment_response():
-    """ Have alexa give you a random compliment out of a list of 100. 
-        Make sure to add the compliments.txt file to same directory as this one
-        in order for this to work.
-    """
+def get_hungry_response():
     session_attributes = {}
-    card_title = "Compliment"
-    compliments = [line for line in open('compliments.txt')]
-    print(compliments)
-    compliment = compliments[random.randint(0,len(compliments)-1)]
-    speech_output = compliment
-    reprompt_text = "I said," + compliment
+    card_title = "hungry response"
+    
+    speech_output = "Well, that depends on what are you looking for? We have hamburgers, pizza, sweets, etc. "
+    reprompt_text = "what are you looking for? You can say things like sweets, hamburger, pizza, ect."
+    
+    should_end_session=False
+    return build_response(session_attributes,build_speechlet_response(card_title, speech_output,reprompt_text, should_end_session))
+        
+def get_pizza_response():
+    session_attributes = {}
+    card_title = "Pizza"
+    
+    speech_output = "We have a Blaze Pizza in Concourse A. Would you like other options?"
+    reprompt_text = speech_output
+    
+    should_end_session = False
+    return build_response(session_attributes,build_speechlet_response(card_title, speech_output,reprompt_text, should_end_session))
+    
+def coffee_response():
+    session_attributes = {}
+    card_title = "Coffee"
+    
+    speech_output = "We have coffee throughout the airport. We have Starbucks in both concourses and the terminal. If you tell me where you are located, I can give you the exact location."
+    reprompt_text = speech_output
+    
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
         
-def get_insult_response():
+def get_hamburger_response():
     """ Message that is sent right when you launch your application
     """
     session_attributes = {}
-    card_title = "Insult"
-    speech_output = "he's a dweeb."
-    # If the user either does not reply to the welcome message or says something
-    # that is not understood, they will be prompted again with this text.
-    reprompt_text = "I said he's a dweeb"
+    card_title = "Hamburger"
+    
+    speech_output = "We have a couple different hamburger options in both concourses. If you tell me where you are located, I can give you options located near you."
+    reprompt_text = speech_output
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
