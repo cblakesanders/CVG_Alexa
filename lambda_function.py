@@ -1,7 +1,6 @@
 """
-This is the compliment application for part 1 of my alexa series. 
-Make sure to add compliments.txt (found on the github page) to the same directory as this file
-in AWS lambda in order for this to work.
+This is an application that tests the capabilities of Alexa skills. 
+Recommends resturants for costumers at an airport. 
 """
 
 from __future__ import print_function
